@@ -1,0 +1,49 @@
+<section id="page">
+    <app-message-panel *ngIf="showError" level="error" [message]="errorMessage"></app-message-panel>
+    <input type="search" (input)="onSearchChange($event)" placeholder="Buscar productos..." />
+    <section *ngIf="!isLoading" class="panel">
+        <table class="center-text table">
+            <thead>
+                <tr class="header">
+                    <th>
+                        Logo
+                    </th>
+                    <th>
+                        Nombre del producto
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Fecha de liberación
+                    </th>
+                    <th>
+                        Fecha de reestructuración
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of filteredProducts">
+                    <td>
+                        <img [src]="producto.logo" width="60" height="40" alt="Logo del producto" async />
+                    </td>
+                    <td>
+                        <p>{{producto.name}}</p>
+                    </td>
+                    <td>
+                        <p>{{producto.description}}</p>
+                    </td>
+                    <td>
+                        <p>{{producto.date_release | date: 'dd/MM/yyyy'}}</p>
+                    </td>
+                    <td>
+                        <p>{{producto.date_revision | date: 'dd/MM/yyyy'}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<app-loading *ngIf="isLoading">
+</app-loading>
