@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiConnectorService } from '../../shared/modules/api-connector/services/api-connector.sevice';
+import { ApiConnectorService } from '../../shared/modules/api-connector/services/api-connector.service';
 import { Subject, debounceTime } from 'rxjs';
 import { BasePage } from '../../shared/common/generic/base.page';
 
@@ -26,7 +26,7 @@ export class ListProductPage extends BasePage implements OnInit {
         this.isLoading = false;
       },
       error: (e) => {
-        console.error(e);
+        // console.error(e);
         //FEAT: se podria dejar marca en APM
         this.showError = true;
         //TODO: logica pa tomar error del backend o en su defecto dejar un error en constante

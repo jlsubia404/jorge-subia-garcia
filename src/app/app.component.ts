@@ -10,5 +10,5 @@ import { LoadingComponent } from './components/loading/loading.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'jorge-subia-garcia';
+  title = 'BANCO';
 }

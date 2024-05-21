@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { IApiConnectorServiceConfig } from './interfaces/api-connector-service-config.interface';
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
-import { ApiConnectorService } from './services/api-connector.sevice';
+import { ApiConnectorService } from './services/api-connector.service';
 
 
 @NgModule({
