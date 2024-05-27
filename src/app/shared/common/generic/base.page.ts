@@ -1,5 +1,5 @@
 export abstract class BasePage {
     isLoading = false;
-    showError = false;
-    errorMessage = '';
+    errorMessage: string | null = null;
+    successMessage: string | null = null;
 }

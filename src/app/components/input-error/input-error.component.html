@@ -1,0 +1,8 @@
+<div *ngIf="item.invalid && (item.dirty || item.touched)" class="error-message">
+    {{item.errors | json}}
+    <small *ngIf="item.errors? item.errors['required'] : false">Valor requerido.</small>
+    <small *ngIf="item.errors? item.errors['minlength'] : false">Campo debe tener mínimo {{item.errors? item.errors['minlength']['requiredLength'] : ''}} caracteres.</small>
+    <small *ngIf="item.errors? item.errors['maxlength'] : false">Campo debe tener máximo {{item.errors? item.errors['maxlength']['requiredLength'] : ''}} caracteres.</small>
+    <small *ngIf="item.errors? item.errors['dateBeforeToday'] : false">La fecha debe ser igual o mayor a hoy.</small>
+    
+</div>

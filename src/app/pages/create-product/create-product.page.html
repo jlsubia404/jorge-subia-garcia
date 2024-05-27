@@ -1,0 +1,59 @@
+<section id="page">
+    <h1 class="center-text">Formulario de registro</h1>
+    <app-message-panel *ngIf="errorMessage" level="error" [message]="errorMessage"></app-message-panel>
+    <app-message-panel *ngIf="successMessage" level="info" [message]="successMessage"></app-message-panel>
+    
+
+    <section *ngIf="!isLoading" class="panel">
+        <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+            <section class="form-row">
+                <article class="form-group col-md-6">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" class="form-control" formControlName="id"/>
+                    <app-input-error [form]="createProductForm" [formItem]="'id'"></app-input-error>
+                </article>
+                <article class="form-group col-md-6">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" class="form-control" formControlName="name">
+                    <app-input-error [form]="createProductForm" [formItem]="'name'"></app-input-error>
+
+                </article>
+            </section>
+            <section class="form-row">
+                <article class="form-group col-md-6">
+                    <label for="description">Descripción</label>
+                    <input type="text" id="description" class="form-control" formControlName="description" />
+                    <app-input-error [form]="createProductForm" [formItem]="'description'"></app-input-error>
+
+                </article>
+                <article class="form-group col-md-6">
+                    <label for="logo">Logo</label>
+                    <input type="text" id="logo" class="form-control" formControlName="logo">
+                    <app-input-error [form]="createProductForm" [formItem]="'logo'"></app-input-error>
+                </article>
+            </section>
+            <section class="form-row">
+                <article class="form-group col-md-6">
+                    <label for="releaseDate">Fecha de lanzamiento</label>
+                    <input type="date" id="releaseDate" class="form-control" formControlName="releaseDate">
+                    <app-input-error [form]="createProductForm" [formItem]="'releaseDate'"></app-input-error>
+                </article>
+                <article class="form-group col-md-6">
+                    <label for="revisionDate">Fecha de revisión</label>
+                    <input type="text" id="revisionDate" class="form-control" formControlName="revisionDate">
+                </article>
+            </section>
+            <section class="toolbar-section">
+
+                <button class="secondary" type="reset" (click)="onReset()">Reiniciar</button>
+                <button class="primary" type="submit">Enviar</button>
+        
+            </section>
+        </form>
+    </section>
+    
+    
+</section>
+
+<app-loading *ngIf="isLoading">
+</app-loading>

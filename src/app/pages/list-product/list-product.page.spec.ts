@@ -4,9 +4,10 @@ import { ApiConnectorService } from '../../shared/modules/api-connector/services
 import { of, throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../components/components.module';
+import { ProductManagerService } from '../../shared/modules/product-manager/services/product-manager.service';
 
-class MockApiConnectorService {
-  getAPI() {
+class MockProductManagerService {
+  getProductList() {
     return of([{ name: 'Product 1' }, { name: 'Product 2' }]);
   }
 }
@@ -14,20 +15,20 @@ class MockApiConnectorService {
 describe('ListProductPage', () => {
   let component: ListProductPage;
   let fixture: ComponentFixture<ListProductPage>;
-  let apiConnectorService: ApiConnectorService;
+  let productManagerService: ProductManagerService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListProductPage],
       imports: [FormsModule, ComponentsModule],
       providers: [
-        { provide: ApiConnectorService, useClass: MockApiConnectorService }
+        { provide: ProductManagerService, useClass: MockProductManagerService }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListProductPage);
     component = fixture.componentInstance;
-    apiConnectorService = TestBed.inject(ApiConnectorService);
+    productManagerService = TestBed.inject(ProductManagerService);
   });
 
   it('should create', () => {
@@ -51,9 +52,8 @@ describe('ListProductPage', () => {
 
 
   it('should handle API errors gracefully', () => {
-    jest.spyOn(apiConnectorService, 'getAPI').mockReturnValue(throwError(() => new Error('API Error')));
+    jest.spyOn(productManagerService, 'getProductList').mockReturnValue(throwError(() => new Error('API Error')));
     fixture.detectChanges(); // triggers ngOnInit
-    expect(component.showError).toBeTruthy();
     expect(component.errorMessage).toBe('Comunicación no disponnible.');
   });
 });

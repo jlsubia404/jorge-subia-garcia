@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiConnectorService } from '../../shared/modules/api-connector/services/api-connector.service';
 import { Subject, debounceTime } from 'rxjs';
 import { BasePage } from '../../shared/common/generic/base.page';
+import { ProductManagerService } from '../../shared/modules/product-manager/services/product-manager.service';
 
 @Component({
   selector: 'app-list-product',
@@ -13,13 +14,16 @@ export class ListProductPage extends BasePage implements OnInit {
   products: any;
   filteredProducts: any;
   queryField = '';
+  //FEAT: puede venir del backend o migrarlo a una constante
+  formatoFecha = 'dd/MM/yyyy';
   private searchSubject: Subject<string> = new Subject<string>();
-  constructor(private apiConnector: ApiConnectorService) {
+  constructor(private productManagerSrv: ProductManagerService) {
     super();
   }
   ngOnInit(): void {
     this.isLoading = true;
-    this.apiConnector.getAPI('/ipf-msa-productosfinancieros/bp/products').subscribe({
+    console.log('Loading...');
+    this.productManagerSrv.getProductList().subscribe({
       next: data => {
         this.products = data;
         this.filteredProducts = this.products;
@@ -28,7 +32,6 @@ export class ListProductPage extends BasePage implements OnInit {
       error: (e) => {
         // console.error(e);
         //FEAT: se podria dejar marca en APM
-        this.showError = true;
         //TODO: logica pa tomar error del backend o en su defecto dejar un error en constante
         this.errorMessage = 'Comunicación no disponnible.'
       }

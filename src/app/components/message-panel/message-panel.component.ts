@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
     styleUrl: './message-panel.component.scss'
 })
 export class MessagePanelComponent {
-    @Input() message = '';
+    @Input() message: string | null = '';
     @Input() level: "info" | "error" | "warn" = 'info';
 
 }
